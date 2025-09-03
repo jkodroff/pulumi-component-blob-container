@@ -1,0 +1,21 @@
+{
+    "name": "@jkodroff/component",
+    "version": "0.0.1",
+    "main": "bin/index.js",
+    "scripts": {
+        "build": "tsc",
+        "postinstall": "node ./scripts/postinstall.js"
+    },
+    "dependencies": {
+        "@pulumi/azure-native": "3.7.1",
+        "@pulumi/pulumi": "^3.142.0",
+        "@types/node": "^18",
+        "typescript": "^4.3.5"
+    },
+    "pulumi": {
+        "resource": true,
+        "name": "component",
+        "version": "0.0.1",
+        "server": "git://github.com/jkodroff/pulumi-component-resource-group/component"
+    }
+}
