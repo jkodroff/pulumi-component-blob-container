@@ -1,21 +1,27 @@
 import * as pulumi from "@pulumi/pulumi";
+import * as rg from "@jkodroff/component";
+import * as azure from "@pulumi/azure-native";
 
-// TODO: Rename this class to reflect the name of the component, e.g. "VirtualNetworkArgs"
-export interface MyComponentArgs {
+export interface MyBlobContainerArgs {
   // TODO: Add input properties in the following form:
   // inputProperty: pulumi.Input<T>
 }
 
-// TODO: Rename this class to something descriptive, e.g. "VirutalNetwork"
-export class MyComponent extends pulumi.ComponentResource {
-  constructor(name: string, args: MyComponentArgs, opts: pulumi.CustomResourceOptions) {
-    // TODO: Replace `pulumi-components` with the name of your package, e.g. `networking`
-    // TODO: Replace `MyComponent` in this string with the name of your component.
-    super("pulumi-components:index:MyComponent", name, args, opts);
+export class MyBlobContainer extends pulumi.ComponentResource {
+  public readonly blobContainer: azure.storage.BlobContainer;
+
+  constructor(name: string, args: MyBlobContainerArgs, opts: pulumi.CustomResourceOptions) {
+    super("pulumi-components:index:MyBlobContainer", name, args, opts);
+
+    const resourceGroup = new rg.MyResourceGroup(`${name}-resource-group`);
+
+    this.blobContainer = new azure.storage.BlobContainer(`${name}-blob-container`, {
+      resourceGroupName: resourceGroup.myResourceGroup.name,
+      accountName: name,
+    });
 
     this.registerOutputs({
-      // TODO: Add all outputs here in the following form:
-      // outputName: this.someResource.someProperty,
-    })
+      blobContainer: this.blobContainer,
+    });
   }
 }

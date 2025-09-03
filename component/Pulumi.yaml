@@ -1,0 +1,12 @@
+name: pulumi-component-blob-container
+description: A minimal TypeScript Pulumi program
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: typescript
+packages:
+  component: github.com/jkodroff/pulumi-component-resource-group/component@0.0.1

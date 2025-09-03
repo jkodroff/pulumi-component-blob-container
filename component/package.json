@@ -6,6 +6,8 @@
         "typescript": "^5.0.0"
     },
     "dependencies": {
+        "@jkodroff/component": "file:sdks/jkodroff-component",
+        "@pulumi/azure-native": "^3.7.1",
         "@pulumi/pulumi": "^3.191.0"
     }
 }
